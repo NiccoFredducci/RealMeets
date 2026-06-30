@@ -89,6 +89,9 @@ def delete_event(request, event_id):
 
         if event.creator != request.user:
             return redirect("home")
+            
+        if event.image and event.image.name != "event_images/default.png":
+            event.image.delete(save=False)
 
         event.delete()
 
