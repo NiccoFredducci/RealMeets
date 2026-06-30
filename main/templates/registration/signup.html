@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign up</title>
+	
+	<link rel="stylesheet" href="{% static 'main/css/authentication.css' %}">
+	<link rel="icon" href="{% static 'main/img/favicon.ico' %}">
+</head>
+<body>
+	<div class="sign-container">
+		<div class="title">Create Account</div>
+		<form class="sign-form" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+			<button type="submit" class="sign-button">
+				Sign Up
+			</button>
+		</form>
+		<a href="{% url 'login' %}">
+			Already have an account?
+		</a>
+	</div>
+	<a style="text-decoration: none;" href="{% url 'home' %}" draggable="false">
+		<button type="button" class="home-button">Go back</button>
+	</a>
+</body>
+</html>
