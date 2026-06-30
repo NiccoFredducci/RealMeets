@@ -19,7 +19,8 @@ class Profile(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to="event_images/", blank=True, null=True)
+    image = models.ImageField(upload_to="event_images/",
+                            default="event_images/default.png")
 
     background_color = models.CharField(
         max_length=7,
