@@ -82,7 +82,7 @@
 							'{{ event.description|escapejs }}',
 							'{{ event.background_color|default:'#F7F9F9' }}',
 							'{{ event.image.url }}')">
-						<img src="{{ event.image.url }}" alt="Event image" width="200">
+						<img src="{% if event.image %} {{ event.image.url }} {% else %} {% static 'main/img/default.png' %} {% endif %}" alt="Event image" width="200">
 						<div class="event-slot-content">
 							<h2>{{ event.title }}</h2>
 							<p>{{ event.description }}</p>
@@ -124,7 +124,7 @@
 									}{% if not forloop.last %},{% endif %}
 								{% endfor %}
 							])">
-						<img src="{{ event.image.url }}" alt="From database event image {{ event.id }}" width="200">
+						<img src="{% if event.image %} {{ event.image.url }} {% else %} {% static 'main/img/default.png' %} {% endif %}" alt="From database event image {{ event.id }}" width="200">
 						<div class="event-slot-content">
 							<h2>{{ event.title }}</h2>
 							<p>{{ event.description }}</p>
@@ -240,7 +240,14 @@
 		});
 		
 		
-		document.getElementById("modal-img").src = imageUrl;
+		const img = document.getElementById("modal-img");
+
+		img.src = imageUrl || "/static/main/img/default.png";
+		
+		img.onerror = function () {
+			this.src = "/static/main/img/default.png";
+		};
+		img.src = imageUrl || fallback;
 	
 		document.getElementById("modal-overlay").style.display = "flex";
 		if (role == "subscriber") {

@@ -12,7 +12,7 @@
 <body>
 <h1>Edit Event</h1>
 <div class="edit-body" id="edit-body" style="background-color: {{ event.background_color }};">
-	<img id="image-preview" src="{{ event.image.url }}" alt="Event image">
+	<img id="image-preview" src="{% if event.image %} {{ event.image.url }} {% else %} {% static 'main/img/default.png' %} {% endif %}" alt="Event image">
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<label class="hidden" for="id_image">Image</label>
