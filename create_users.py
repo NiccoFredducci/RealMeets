@@ -5,7 +5,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventsite.settings")
 django.setup()
 
 from django.contrib.auth.models import User
-from accounts.models import Profile  # adjust if needed
 
 
 def create_user(username, password, role=None, is_superuser=False):
