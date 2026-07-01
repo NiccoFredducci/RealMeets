@@ -66,21 +66,22 @@ button {
 	font-size: 1rem;
 	transition: transform 0.1s ease-in-out;
 	cursor: pointer;
-	background-color: var(--pearl-aqua);
 	border: none;
 	outline: none;
 	font-family: 'Cantarell-bold';
-	box-shadow: -.25rem .25rem .5rem var(--steel-blue),
-				.25rem -.25rem .5rem var(--frozen-lake);
+	box-shadow: 0 0 .5rem black;
 }
 
 button:hover {
 	transform: scale(1.1);
 }
 
+.delete:hover {
+	transform: scaleY(1.1);
+}
+
 button:active {
-	box-shadow: inset -.25rem .25rem .5rem var(--steel-blue),
-				inset .25rem -.25rem .5rem var(--frozen-lake);
+	box-shadow: inset 0 0 .5rem black;
 }
 
 .edit-body {

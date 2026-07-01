@@ -111,19 +111,19 @@
 				<div class="events-grid">
 					{% for event in events %}
 					<div class="event-slot" style="background-color: {{ event.background_color }};"
-		 onclick="openModal('{{ event.id|escapejs }}',
-							'{{ event.title|escapejs }}',
-							'{{ event.description|escapejs }}',
-							'{{ event.background_color|default:'#F7F9F9' }}',
-							'{{ event.image_url }}',
-							[
-								{% for user in event.subscribers.all %}
-									{
-										id: {{ user.id }},
-										username: '{{ user.username|escapejs }}'
-									}{% if not forloop.last %},{% endif %}
-								{% endfor %}
-							])">
+						onclick="openModal('{{ event.id|escapejs }}',
+											'{{ event.title|escapejs }}',
+											'{{ event.description|escapejs }}',
+											'{{ event.background_color|default:'#F7F9F9' }}',
+											'{{ event.image_url }}',
+											[
+												{% for user in event.subscribers.all %}
+													{
+														id: {{ user.id }},
+														username: '{{ user.username|escapejs }}'
+													}{% if not forloop.last %},{% endif %}
+												{% endfor %}
+											])">
 						<img src="{% if event.image %} {{ event.image_url }} {% else %} {% static 'main/img/default.png' %} {% endif %}" alt="From database event image {{ event.id }}" width="200">
 						<div class="event-slot-content">
 							<h2>{{ event.title }}</h2>

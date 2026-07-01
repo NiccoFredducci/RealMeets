@@ -39,7 +39,10 @@ def home(request):
     if request.user.is_authenticated:
         role = request.user.profile.role
 
-        if role == "manager":
+        if request.user.is_superuser:
+            events = Event.objects.all()
+        
+        elif role == "manager":
             events = events.filter(creator=request.user)
 
         elif role == "subscriber":
