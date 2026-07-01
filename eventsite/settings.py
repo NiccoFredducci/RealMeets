@@ -56,6 +56,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eventsite.wsgi.application'
 
+
+
+#deploy values
+
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get("DATABASE_URL")
@@ -68,11 +72,23 @@ CLOUDINARY_STORAGE = {
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
 
-#CLOUDINARY_STORAGE = {
-#    "CLOUD_NAME": "fzekb7xl",
-#    "API_KEY": "697633699859877",
-#    "API_SECRET": "qhI0BN_xy61QxbUzFnNs5XTSSGE",
-#}
+"""
+
+#local values
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}"
+    )
+}
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "fzekb7xl",
+    "API_KEY": "697633699859877",
+    "API_SECRET": "qhI0BN_xy61QxbUzFnNs5XTSSGE",
+}
+
+"""
 
 AUTH_PASSWORD_VALIDATORS = [
     {

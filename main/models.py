@@ -19,8 +19,18 @@ class Profile(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to="event_images/",
-                            default="event_images/default.png")
+    image = models.ImageField(
+        upload_to="event_images/",
+        blank=True,
+        null=True
+    )
+    
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, "url"):
+            return self.image.url
+    
+        return "https://i.imgur.com/dXaSfL3.png"
 
     background_color = models.CharField(
         max_length=7,

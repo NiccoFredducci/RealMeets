@@ -18,7 +18,12 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = "event_id"
 
     def get_queryset(self):
-        return Event.objects.filter(creator=self.request.user)
+        user = self.request.user
+    
+        if user.is_superuser or user.profile.role == "manager":
+            return Event.objects.all()
+    
+        return Event.objects.filter(creator=user)
 
     success_url = reverse_lazy("home")
 
@@ -84,10 +89,11 @@ def delete_event(request, event_id):
 
         event = get_object_or_404(Event, id=event_id)
 
-        if request.user.profile.role != "manager":
-            return redirect("home")
-
-        if event.creator != request.user:
+        if not (
+            request.user.is_superuser or
+            request.user.profile.role == "manager" or
+            event.creator == request.user
+        ):
             return redirect("home")
             
         if event.image and event.image.name != "event_images/default.png":
@@ -124,7 +130,10 @@ def remove_participant(request, event_id, user_id):
 
     event = get_object_or_404(Event, id=event_id)
 
-    if request.user.profile.role != "manager" or event.creator != request.user:
+    if not (
+        request.user.is_superuser or
+        request.user.profile.role == "manager"
+    ):
         return JsonResponse({"error": "not allowed"}, status=403)
 
     user = get_object_or_404(User, id=user_id)
@@ -135,3 +144,10 @@ def remove_participant(request, event_id, user_id):
         "status": "removed",
         "user_id": user_id
     })
+    
+def can_manage_event(user, event):
+    return (
+        user.is_superuser or
+        user.profile.role == "manager" or
+        event.creator == user
+    )
