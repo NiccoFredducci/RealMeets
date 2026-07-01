@@ -162,15 +162,15 @@
 				</div>
 				<div class="event-control-right">
 					{% if not user.is_authenticated %}
-					<a style="text-decoration: none;" href="{% url 'login' %}">
+					<a style="text-decoration: none;" draggable=false href="{% url 'login' %}">
 						<button>Attend</button>
 					</a>
 					{% elif role == "subscriber" %}
-						<a style="text-decoration: none;">
+						<a style="text-decoration: none;" draggable=false>
 							<button id="attend-button" onclick="toggleAttendance()">Attend</button>
 						</a>
 					{% elif role == "manager" %}
-					<a style="text-decoration: none;" id="edit-link">
+					<a style="text-decoration: none;" draggable=false id="edit-link">
 						<button>Edit</button>
 					</a>
 					{% endif %}
