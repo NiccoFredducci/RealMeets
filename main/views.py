@@ -8,6 +8,7 @@ from django.views.generic import UpdateView
 from django.db.models import Q
 from django.http import JsonResponse
 from django.urls import reverse_lazy
+from cloudinary.uploader import destroy
 from .models import Event
 from .forms import EventForm
 
@@ -99,7 +100,7 @@ def delete_event(request, event_id):
         ):
             return redirect("home")
             
-        if event.image and event.image.name != "event_images/default.png":
+        if event.image:
             event.image.delete(save=False)
 
         event.delete()

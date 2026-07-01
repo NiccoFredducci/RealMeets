@@ -15,9 +15,13 @@
 	<img id="image-preview" src="{% if event.image %} {{ event.image_url }} {% else %} {% static 'main/img/default.png' %} {% endif %}" alt="Event image">
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
-		<label class="hidden" for="id_image">Image</label>
-		{{ form.image }}
-		{{ form.image.errors }}
+		<div class="image-field-wrapper">
+			<label for="id_image">Image</label>
+			<div class="image-input">
+				{{ form.image }}
+				{{ form.image.errors }}
+			</div>
+		</div>
 	
 		<label for="id_title">Title</label>
 		{{ form.title }}

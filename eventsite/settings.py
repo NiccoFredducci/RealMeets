@@ -56,7 +56,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eventsite.wsgi.application'
 
-
+"""
 
 #deploy values
 
@@ -88,7 +88,7 @@ CLOUDINARY_STORAGE = {
     "API_SECRET": "qhI0BN_xy61QxbUzFnNs5XTSSGE",
 }
 
-"""
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

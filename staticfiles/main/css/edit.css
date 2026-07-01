@@ -131,4 +131,15 @@ button:active {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-}   
+}
+
+.image-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.image-input {
+    display: flex;
+    align-items: center;
+}

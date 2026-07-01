@@ -57,10 +57,10 @@
 						</button>
 					</form>
 					{% else %}
-					<a style="text-decoration: none;" href="{% url 'signup' %}">
+					<a style="text-decoration: none;" href="{% url 'signup' %}" draggable="false">
 						<button type="button">Sign up</button>
 					</a>
-					<a style="text-decoration: none;" href="{% url 'login' %}">
+					<a style="text-decoration: none;" href="{% url 'login' %}" draggable="false">
 						<button type="button">Sign in</button>
 					</a>
 					{% endif %}
